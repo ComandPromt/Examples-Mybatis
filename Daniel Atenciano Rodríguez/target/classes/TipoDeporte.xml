@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap 
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+   
+<sqlMap >
+	<select id="getTipoDeporte" resultClass="com.objetos.TipoDeporte">
+      SELECT 
+          ID_DEPORTE as id_tipoDeporte,
+          NOMBRE_DEPORTE as nombre_Deporte
+       FROM TIPODEPORTE
+	   WHERE ID_DEPORTE = #valor#
+	</select>
+	
+	<insert id="insertTipoDeporte" >
+	   INSERT INTO TIPODEPORTE VALUES (
+	   #id_tipoDeporte#,
+	   #nombre_Deporte#
+	   )
+	</insert>
+	
+	<update id="updateTipoDeporte" parameterClass="com.objetos.TipoDeporte">
+	   UPDATE TIPODEPORTE SET
+          NOMBRE_DEPORTE= #nombre_Deporte#
+	   WHERE
+	      ID_DEPORTE=#id_tipoDeporte#   
+	</update>
+	
+	<delete id="removeTipoDeporte">
+	   DELETE FROM TIPODEPORTE WHERE  ID_DEPORTE=#valor#
+	</delete>
+</sqlMap>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap 
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap >
+	<select id="getReserva" resultClass="com.objetos.Reserva">
+      SELECT 
+          ID_RESERVA as id_Reserva,
+          ID_CAMPO as id_Campo,
+          ID_TIPODEPORTE as id_tipoDeporte,
+          HORA_INICIO as Hora_Inicio,
+          HORA_FIN as Hora_Fin,
+          DIA AS dia
+       FROM RESERVA
+	   WHERE ID_RESERVA = #valor#  
+	</select>
+
+	<select id="getReservas" resultClass="com.objetos.Reserva">
+      SELECT 
+  		ID_RESERVA as id_Reserva,
+          ID_CAMPO as id_Campo,
+          ID_TIPODEPORTE as id_tipoDeporte,
+          HORA_INICIO as Hora_Inicio,
+          HORA_FIN as Hora_Fin,
+          DIA AS dia
+       FROM RESERVA
+     </select>
+		
+	<insert id="insertReserva" >
+	   INSERT INTO RESERVA VALUES (
+	   null,
+	   #id_Campo#,
+	   #id_tipoDeporte#,
+	   #Hora_Inicio#,
+	   #Hora_Fin#
+	   #dia#
+	   )
+	</insert>
+	
+</sqlMap>
