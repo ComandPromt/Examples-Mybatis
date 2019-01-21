@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap 
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap >
+	<select id="getReserva" resultClass="com.mybatis.Reserva">
+      SELECT 
+      	  id as id,
+          idcampo as idCampo,
+          iddeporte as idDeporte,
+          fecha as fecha,
+          horainicio as horaInicio,
+          horafin as horaFin
+       FROM reserva
+	   WHERE id = #valor#
+	</select>
+
+	<select id="getReservas" resultClass="com.mybatis.Reserva">
+      SELECT 
+          idcampo as idCampo,
+          iddeporte as idDeporte,
+          fecha as fecha,
+          horainicio as horaInicio,
+          horafin as horaFin
+       FROM reserva
+	</select>
+	
+	<select id="getHashReserva" resultClass="java.util.Hashtable">
+      SELECT 
+          idcampo as idCampo,
+          iddeporte as idDeporte,
+          fecha as fecha,
+          horainicio as horaInicio,
+          horafin as horaFin
+       FROM reserva
+	   WHERE id = #valor#
+ 	</select>
+	
+	<insert id="insertReserva" >
+	   INSERT INTO reserva VALUES (
+	   null,
+	   #idCampo#,
+	   #idDeporte#,
+	   #fecha#,
+	   #horaInicio#,
+	   #horaFin#)
+	</insert>
+	
+	<update id="updateReserva" parameterClass="com.mybatis.Reserva">
+	   UPDATE reserva SET
+          fecha = #fecha#,
+          horainicio = #horaInicio#,
+          horafin = #horaFin#
+	   WHERE
+	      id = #id#
+	</update>
+	
+	<delete id="removeReserva">
+	   DELETE FROM reserva WHERE id = #valor#
+	</delete>
+</sqlMap>

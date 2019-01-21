@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap 
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap>
+	<select id="getReserva" resultClass="deporte.Reserva">
+		SELECT
+		ID_RESERVA as id_reserva,
+		HORA_INICIO as hora_inicio,
+		HORA_FIN as hora_fin,
+		DIA as dia,
+		ID_CAMPO as id_campo,
+		ID_TIPODEPORTE as id_tipoDeporte
+		FROM RESERVA
+		WHERE ID_RESERVA = #valor#
+	</select>
+
+	<select id="getReservas" resultClass="deporte.Reserva">
+		SELECT
+		ID_RESERVA as id_reserva,
+		HORA_INICIO as hora_inicio,
+		HORA_FIN as hora_fin,
+		DIA as dia,
+		ID_CAMPO as id_campo,
+		ID_TIPODEPORTE as id_tipoDeporte
+		FROM RESERVA
+	</select>
+
+	<select id="getHashReservas" resultClass="java.util.Hashtable">
+		SELECT
+		ID_RESERVA as id_reserva,
+		HORA_INICIO as hora_inicio,
+		HORA_FIN as hora_fin,
+		DIA as dia,
+		ID_CAMPO as id_campo,
+		ID_TIPODEPORTE as id_tipoDeporte
+		FROM reserva
+		WHERE ID_RESERVA = #valor#
+	</select>
+	<select id="comprobarDeportes" resultClass="deporte.Reserva">
+		SELECT
+		ID_RESERVA as id_reserva
+		FROM reserva
+		WHERE ID_TIPODEPORTE = #valor#
+	</select>
+	
+	<select id="comprobarCampos" resultClass="deporte.Reserva">
+		SELECT
+		ID_CAMPO as id_campo
+		FROM reserva
+		WHERE ID_CAMPO = #valor#
+	</select>
+
+	<insert id="insertReserva">
+		INSERT INTO RESERVA VALUES (
+		null,
+		#hora_inicio#,
+		#hora_fin#,
+		#dia#,
+		#id_campo#,
+		#id_tipoDeporte#)
+	</insert>
+
+	<update id="updateReserva" parameterClass="deporte.Reserva">
+		UPDATE RESERVA SET
+		ID_RESERVA = #id_reserva#,
+		HORA_INICIO = #hora_inicio#,
+		HORA_FIN = #hora_fin#,
+		DIA = #dia#,
+		ID_CAMPO = #id_campo#,
+		ID_TIPODEPORTE = #id_tipoDeporte#
+		WHERE ID_RESERVA =#id_reserva#
+	</update>
+
+	<delete id="removeReserva">
+		DELETE FROM reserva WHERE ID_reserva=#valor#
+	</delete>
+</sqlMap>

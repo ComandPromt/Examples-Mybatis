@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap 
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap >
+	<select id="getCampo" resultClass="com.mybatis.Campo">
+      SELECT 
+          idcampo as idCampo,
+          nombre as nombre
+       FROM campo
+	   WHERE idcampo = #valor#
+	</select>
+
+	<select id="getCampos" resultClass="com.mybatis.Campo">
+      SELECT 
+          idcampo as idCampo,
+          nombre as nombre
+       FROM campo
+	</select>
+	
+	<select id="getHashCampo" resultClass="java.util.Hashtable">
+      SELECT 
+          idcampo as idCampo,
+          nombre as nombre
+       FROM campo
+	   WHERE idcampo = #valor#
+	</select>
+	
+	<insert id="insertCampo" >
+	   INSERT INTO campo VALUES (
+	   null,
+	   #nombre#)
+	</insert>
+	
+	<update id="updateCampo" parameterClass="com.mybatis.Campo">
+	   UPDATE campo SET
+          nombre = #nombre#
+	   WHERE
+	      idcampo=#idCampo#
+	</update>
+	
+	<delete id="removeCampo">
+	   DELETE FROM campo WHERE idcampo=#valor#
+	</delete>
+</sqlMap>

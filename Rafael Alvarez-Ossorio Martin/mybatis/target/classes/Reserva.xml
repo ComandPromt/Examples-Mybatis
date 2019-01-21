@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap 
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap >
+	<select id="getCampo" resultClass="MyBatis.mybatis.Campo">
+      SELECT 
+          ID_CAMPO as id_campo,
+          nombre as nombre
+       FROM campo
+	   WHERE ID_CAMPO = #id_campo#
+	</select>
+	<select id="getTipoDeporte" resultClass="MyBatis.mybatis.Tipo_deporte">
+      SELECT 
+          ID_TIPO as id_tipo,
+          nombre as nombre
+       FROM tipo_deporte
+	   WHERE ID_TIPO = #id_tipo#
+	</select>	
+	<select id="getReservas" resultClass="MyBatis.mybatis.Reserva">
+      SELECT 
+          ID_RESERVA as idReserva,
+          HORA_INICIO as hora_inicio,
+          HORA_FIN as hora_fin,
+          DIA as dia,
+          ID_TIPO as id_tipo,
+          ID_CAMPO as id_campo
+       FROM reserva
+	</select>
+	
+	<select id="getCampos" resultClass="MyBatis.mybatis.Campo">
+      SELECT 
+          ID_CAMPO as id_campo,
+          nombre as nombre
+       FROM campo
+	</select>
+	<select id="getTipoDeportes" resultClass="MyBatis.mybatis.Tipo_deporte">
+      SELECT 
+          ID_TIPO as id_tipo,
+          nombre as nombre
+       FROM tipo_deporte
+	</select>	
+
+	<!-- <select id="getCoches" resultClass="MyBatis.mybatis.Coche">
+      SELECT 
+          ID_COCHE as id,
+          MARCA as marca,
+          MATRICULA as matricula,
+          FECHA_MATRICULA as fechaMatricula
+       FROM COCHE
+	</select>
+	
+	<select id="getHashCoche" resultClass="java.util.Hashtable">
+      SELECT 
+          ID_COCHE as id,
+          MARCA as marca,
+          MATRICULA as matricula,
+          FECHA_MATRICULA as fechaMatricula
+       FROM COCHE
+	   WHERE ID_COCHE = #valor#
+	</select> -->
+	<insert id="insertCampo" >
+	   INSERT INTO campo VALUES (
+	   null,
+	   #nombre#
+	   )
+	</insert>
+		
+	<insert id="insertTipoDeporte" >
+	   INSERT INTO tipo_deporte VALUES (
+	   null,
+	   #nombre#
+	   )
+	</insert>		
+	
+	<insert id="insertReserva" >
+	   INSERT INTO reserva VALUES (
+	   null,
+	   #hora_inicio#,
+	   #hora_fin#,
+	   #dia#,
+	   #id_tipo#,
+	   #id_campo#
+	   )
+	</insert>
+	<update id="updateCampo" parameterClass="MyBatis.mybatis.Campo">
+	   UPDATE campo SET
+          nombre = #nombre#
+	   WHERE
+	      ID_CAMPO = #id_campo#   
+	</update>
+	<update id="updateTipoDeporte" parameterClass="MyBatis.mybatis.Tipo_deporte">
+	   UPDATE tipo_deporte SET
+          nombre = #nombre#
+	   WHERE
+	      ID_TIPO = #id_tipo#   
+	</update>		
+	
+	<!--  <update id="updateReserva" parameterClass="MyBatis.mybatis.Reserva">
+	   UPDATE tipo_deporte SET
+          HORA_INICIO = #hora_inicio#,
+          HORA_FIN = #hora_fin#
+	   WHERE
+	      ID_RESERVA=#id#   
+	</update>-->
+	<delete id="removeCampo">
+	   DELETE FROM campo WHERE ID_CAMPO=#valor#
+	</delete>
+	<delete id="removeTipoDeporte">
+	   DELETE FROM tipo_deporte WHERE ID_Tipo=#valor#
+	</delete>	
+	<!-- <delete id="removeReserva">
+	   DELETE FROM COCHE WHERE ID_COCHE=#valor#
+	</delete> -->
+</sqlMap>
