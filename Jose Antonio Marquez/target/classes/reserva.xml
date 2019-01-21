@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap 
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap>
+	<insert id="insertarReserva">
+		INSERT INTO RESERVA VALUES (
+			null,
+			null,
+			#nombreReserva#,
+			#hora_inicio#,
+			#hora_fin#,
+			#dia#,
+			#idTipoDep#)
+	</insert>
+
+	<delete id="eliminarReserva">
+		DELETE FROM RESERVA WHERE id_reserva=#valor#
+	</delete>
+	
+	<select id="getReserva" resultClass="proyecto.Reserva">
+		SELECT
+			id_reserva as idReserva,
+			id_campo as idCampo,
+			nombre_reserva as nombreReserva,
+			hora_inicio as hora_inicio,
+			hora_fin as hora_fin,
+			dia as dia,
+			id_tipoDep as idTipoDep
+		FROM RESERVA
+			WHERE id_reserva = #valor#
+	</select>
+
+	<select id="getReservas" resultClass="proyecto.Reserva">
+		SELECT
+			id_reserva as idReserva,
+			nombre_reserva as nombreReserva,
+			hora_inicio as hora_inicio,
+			hora_fin as hora_fin,
+			dia as dia,
+			id_tipoDep as idTipoDep
+		FROM RESERVA
+	</select>
+	
+	<insert id="insertarCampo">
+		INSERT INTO CAMPO VALUES (
+			#idCampo#,
+			#nombreCampo#
+		)
+	</insert>
+
+	<delete id="eliminarCampo">
+		DELETE FROM CAMPO WHERE id_campo=#valor#
+	</delete>
+	
+	<select id="getCampo" resultClass="proyecto.Campo">
+		SELECT
+			id_campo as idCampo,
+			nombre_campo as nombreCampo
+		FROM CAMPO
+			WHERE id_campo = #valor#
+	</select>
+
+	<select id="getCampos" resultClass="proyecto.Campo">
+		SELECT
+			id_campo as idCampo,
+			nombre_campo as nombreCampo
+		FROM CAMPO
+	</select>
+	
+	<insert id="insertarDeporte">
+		INSERT INTO TIPODEPORTE VALUES (
+			#idDeporte#,
+			#nombreDeporte#
+		)
+	</insert>
+
+	<delete id="eliminarDeporte">
+		DELETE FROM TIPODEPORTE WHERE id_deporte=#valor#
+	</delete>
+	
+	<select id="getDeporte" resultClass="proyecto.TipoDeporte">
+		SELECT
+			id_deporte as idDeporte,
+			nombre_deporte as nombreDeporte
+		FROM TIPODEPORTE
+			WHERE id_deporte = #valor#
+	</select>
+
+	<select id="getDeportes" resultClass="proyecto.TipoDeporte">
+		SELECT
+			id_deporte as idDeporte,
+			nombre_deporte as nombreDeporte
+		FROM TIPODEPORTE
+	</select>
+</sqlMap>

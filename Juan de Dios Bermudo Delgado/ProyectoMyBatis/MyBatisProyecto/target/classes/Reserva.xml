@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap 
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap>
+	<select id="getReserva" resultClass="com.objetos.reserva">
+		SELECT
+		id_reserva as id_reserva,
+		NOMBRE_reserva as nombreReserva,
+		dia as dia,
+		horaInicio as horaInicio,
+		horaFin as horaFin,
+		id_Campo as id_campo,
+		id_tipoDeporte as id_tipoDeporte
+		FROM reserva
+		WHERE id_reserva = #valor#
+	</select>
+
+	<select id="getReservas" resultClass="com.objetos.reserva">
+		SELECT
+		id_reserva as id_reserva,
+		NOMBRE_reserva as nombreReserva,
+		dia as dia,
+		horaInicio as horaInicio,
+		horaFin as horaFin,
+		id_Campo as id_campo,
+		id_tipoDeporte as id_tipoDeporte
+		FROM reserva
+	</select>
+
+	<select id="getHashReserva" resultClass="java.util.Hashtable">
+		SELECT
+		ID_CAMPO as id_campo,
+		NOMBRE_CAMPO as nombreCampo
+		FROM CAMPO
+		WHERE ID_CAMPO = #valor#
+	</select>
+
+	<insert id="insertReserva">
+		INSERT INTO reserva VALUES (
+		null,
+		#nombreReserva#,
+		#dia#,
+		#horaInicio#,
+		#horaFin#,
+		#id_campo#,
+		#id_tipoDeporte#)
+	</insert>
+
+	<update id="updateReserva" parameterClass="com.objetos.reserva">
+		UPDATE reserva SET
+		NOMBRE_reserva = #nombreReserva#,
+		dia = #dia#,
+		horaInicio = #horaInicio#,
+		horaFin = #horaFin#,
+		id_Campo = #id_campo#,
+		id_tipoDeporte = #id_tipoDeporte#
+		WHERE
+		id_reserva=#id_reserva#
+	</update>
+
+	<delete id="removeReserva">
+		DELETE FROM reserva WHERE id_reserva=#valor#
+	</delete>
+</sqlMap>

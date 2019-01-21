@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap 
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap >
+	
+	<insert id="insertCampo" >
+	   INSERT INTO CAMPO VALUES (
+	   null,
+	   #nombreCampo#
+	   )
+	</insert>
+	
+	<update id="updateCampo" parameterClass="com.Campo">
+	   UPDATE CAMPO SET
+          ID_CAMPO = #idCampo#,
+          NOMBRE_CAMPO = #nombreCampo#
+	   WHERE
+	      ID_CAMPO=#idCampo#   
+	</update>
+	
+	<delete id="removeCampo">
+	   DELETE FROM CAMPO WHERE ID_CAMPO=#valor#
+	</delete>
+</sqlMap>
