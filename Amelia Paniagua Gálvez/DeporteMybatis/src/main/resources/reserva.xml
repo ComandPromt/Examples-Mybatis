@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap 
+   PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" 
+   "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap>
+
+	<insert id="insertReserva">
+		INSERT INTO RESERVA VALUES (
+			null,
+			#hora_inicio#,
+			#hora_fin#,
+			#dia#,
+			#id_tipoDeporte#,
+			#id_Campo#
+			)
+	</insert>
+	
+	<delete id="removeReserva">
+	   DELETE FROM RESERVA WHERE ID_RESERVA=#valor#
+	</delete>
+	
+	<select id="getReservas" resultClass="com.mybatis.Reserva">
+      SELECT 
+          ID_RESERVA as id,
+          HORA_INICIO as hora_inicio,
+          HORA_FIN as hora_fin,
+          DIA as dia,
+          ID_TIPO_DEPORTE as id_tipoDeporte,
+          ID_CAMPO as id_Campo
+       FROM RESERVA
+	</select>
+
+</sqlMap>
